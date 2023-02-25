@@ -1,0 +1,11 @@
+.app {
+	display: flex;
+	justify-content: center;
+}
+
+.appCard {
+	width: 20rem;
+	height: auto;
+	padding: 1rem;
+	background-color: purple;
+}

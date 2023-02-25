@@ -1,0 +1,22 @@
+.addUserCard {
+	width: 18rem;
+	background-color: purple;
+	padding: 1rem;
+}
+
+.addUserForm {
+	display: flex;
+	flex-direction: column;
+	height: 10vh;
+	justify-content: space-between;
+	color: white;
+}
+
+.addUserField {
+	display: flex;
+	justify-content: space-between;
+}
+
+.addUserForm button {
+	width: 40%;
+}
