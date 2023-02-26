@@ -1,26 +1,43 @@
 import React, { useState } from "react";
 
 import Card from "../UI/Card";
+import Modal from "../UI/Modal";
 import User from "../../types/User";
+import ErrorMessage from "../../types/ErrorMessage";
 
 import styles from "../../styles/AddUser.module.css";
-import Modal from "../UI/Modal";
 
 const AddUser: React.FC<{ onAddUser: (user: User) => void }> = (props) => {
 	const [username, setUsername] = useState("");
 	const [age, setAge] = useState("");
+	const [errorMessage, setErrorMessage] = useState<ErrorMessage | undefined>();
 
 	const addUserHandler = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
-		const newUser: User = {
-			username: username,
-			age: parseInt(age),
-		};
+		const trimmedUsername = username.trim();
+		const trimmedAge = age.trim();
 
-		props.onAddUser(newUser);
-		setUsername("");
-		setAge("");
+		if (trimmedUsername.length === 0 || trimmedAge.length === 0) {
+			setErrorMessage({
+				title: "Invalid Input",
+				message: "Please fill all fields.",
+			});
+		} else if (+trimmedAge < 0) {
+			setErrorMessage({
+				title: "Invalid Age",
+				message: "Age must be positive.",
+			});
+		} else {
+			const newUser: User = {
+				username: username.trim(),
+				age: parseInt(age.trim()),
+			};
+
+			props.onAddUser(newUser);
+			setUsername("");
+			setAge("");
+		}
 	};
 
 	const usernameChangeHandler = (
@@ -33,13 +50,20 @@ const AddUser: React.FC<{ onAddUser: (user: User) => void }> = (props) => {
 		setAge(event.currentTarget.value);
 	};
 
+	const clearErrorHandler = () => {
+		setErrorMessage(undefined);
+	};
+
 	return (
 		<>
-			<Modal
-				buttonText="Okay"
-				title="An error has occured"
-				message="Something went wrong."
-			/>
+			{errorMessage && (
+				<Modal
+					title={errorMessage.title}
+					message={errorMessage.message}
+					onClearModal={clearErrorHandler}
+				/>
+			)}
+
 			<Card className={styles.addUserCard}>
 				<form className={styles.addUserForm} onSubmit={addUserHandler}>
 					<div className={styles.addUserField}>

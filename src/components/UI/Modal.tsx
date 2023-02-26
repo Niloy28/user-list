@@ -1,12 +1,12 @@
-import ModalProps from "../../types/ModalProps";
 import Card from "./Card";
+import ModalProps from "../../types/ModalProps";
 
 import styles from "../../styles/Modal.module.css";
 
 const Modal: React.FC<ModalProps> = (props) => {
 	return (
 		<div>
-			<div className={styles.backdrop}></div>
+			<div className={styles.backdrop} onClick={props.onClearModal}></div>
 			<Card className={styles.modal}>
 				<header className={styles.header}>
 					<h2>{props.title}</h2>
@@ -15,7 +15,9 @@ const Modal: React.FC<ModalProps> = (props) => {
 					<p>{props.message}</p>
 				</div>
 				<footer>
-					<button>{props.buttonText}</button>
+					<button onClick={props.onClearModal}>
+						{props.buttonText === undefined ? "Okay" : props.buttonText}
+					</button>
 				</footer>
 			</Card>
 		</div>

@@ -1,6 +1,7 @@
 .userList {
 	background-color: white;
-	width: 50%;
+	width: 40%;
+	margin: 0.5rem;
 }
 
 .userList ul {
