@@ -1,0 +1,53 @@
+.backdrop {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.75);
+	z-index: 10;
+}
+
+.modal {
+	position: fixed;
+	top: 30vh;
+	left: 10%;
+	width: 80%;
+	background-color: white;
+	z-index: 100;
+	overflow: hidden;
+}
+
+.header {
+	padding: 1rem;
+	background-color: purple;
+}
+
+.header h2 {
+	color: white;
+	margin: 0.25rem;
+	padding: 0.25rem;
+}
+
+.modal p {
+	margin: 0.5rem;
+	padding: 0.75rem;
+	font-size: large;
+}
+
+.modal button {
+	float: right;
+	background-color: purple;
+	color: white;
+	padding: 0.25rem 0.5rem;
+	margin: 0.5rem;
+	border-radius: 5px;
+}
+
+.modal button:hover {
+	background-color: rgb(160, 1, 160);
+}
+
+.modal button:active {
+	background-color: rgb(78, 0, 78);
+}
