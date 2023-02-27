@@ -1,11 +1,13 @@
+import { createPortal } from "react-dom";
+
 import Card from "./Card";
 import ModalProps from "../../types/ModalProps";
 
 import styles from "../../styles/Modal.module.css";
 
-const Modal: React.FC<ModalProps> = (props) => {
+const ModalElement: React.FC<ModalProps> = (props) => {
 	return (
-		<div>
+		<>
 			<div className={styles.backdrop} onClick={props.onClearModal}></div>
 			<Card className={styles.modal}>
 				<header className={styles.header}>
@@ -20,7 +22,18 @@ const Modal: React.FC<ModalProps> = (props) => {
 					</button>
 				</footer>
 			</Card>
-		</div>
+		</>
+	);
+};
+
+const Modal: React.FC<ModalProps> = (props) => {
+	return (
+		<>
+			{createPortal(
+				<ModalElement {...props} />,
+				document.getElementById("modal-root")!
+			)}
+		</>
 	);
 };
 
