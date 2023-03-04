@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 import Card from "../UI/Card";
 import Modal from "../UI/Modal";
@@ -30,6 +31,7 @@ const AddUser: React.FC<{ onAddUser: (user: User) => void }> = (props) => {
 			});
 		} else {
 			const newUser: User = {
+				id: uuidv4(),
 				username: username.trim(),
 				age: parseInt(age.trim()),
 			};

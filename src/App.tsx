@@ -8,6 +8,7 @@ import styles from "./styles/App.module.css";
 
 const DUMMY_USERS: User[] = [
 	{
+		id: "example-dummy-1",
 		username: "Bobby",
 		age: 53,
 	},
@@ -20,14 +21,14 @@ function App() {
 		setUsers((prevUsers) => [...prevUsers, user]);
 	};
 
-	const removeUserHandler = (user: User) => {
-		setUsers((prevUsers) => prevUsers.filter((u) => u !== user));
+	const removeUserHandler = (userId: string) => {
+		setUsers((prevUsers) => prevUsers.filter((u) => u.id !== userId));
 	};
 
 	return (
 		<div className={styles.app}>
 			<AddUser onAddUser={addUserHandler} />
-			<UserList users={users} />
+			<UserList users={users} onUserDelete={removeUserHandler} />
 		</div>
 	);
 }
